@@ -1,0 +1,9 @@
+[submodule "dotVim"]
+	path = dotVim
+	url = https://github.com/danerwilliams/dotVim.git
+[submodule "dotTmux"]
+	path = dotTmux
+	url = https://github.com/danerwilliams/dotTmux.git
+[submodule "dotBash"]
+	path = dotBash
+	url = https://github.com/danerwilliams/dotBash.git
