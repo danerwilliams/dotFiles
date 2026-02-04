@@ -16,8 +16,12 @@ ln -sf "$DOTFILES_DIR/dotTmux/tmux.conf" "$HOME/.tmux.conf"
 
 # Bash
 ln -sfn "$DOTFILES_DIR/dotBash" "$HOME/.bash"
-ln -sf "$DOTFILES_DIR/dotBash/bashrc" "$HOME/.bashrc"
 ln -sf "$DOTFILES_DIR/dotBash/bash_profile" "$HOME/.bash_profile"
+# Source bashrc rather than symlinking it, since Ona overwrites .bashrc
+# after the install script runs to inject its secrets block
+if ! grep -q "dotBash/bashrc" "$HOME/.bashrc" 2>/dev/null; then
+    echo '[ -r ~/dotfiles/dotBash/bashrc ] && source ~/dotfiles/dotBash/bashrc' >> "$HOME/.bashrc"
+fi
 
 # Install Vim plugins
 if command -v vim &> /dev/null; then
