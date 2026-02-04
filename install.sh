@@ -23,7 +23,8 @@ if ! grep -q "dotBash/bashrc" "$HOME/.bashrc" 2>/dev/null; then
     echo '[ -r ~/dotfiles/dotBash/bashrc ] && source ~/dotfiles/dotBash/bashrc' >> "$HOME/.bashrc"
 fi
 
-# Install Vim plugins non-interactively (-E -s runs silent ex mode, no prompts)
+# Install Vim plugins non-interactively
+# First run hits "Press ENTER" from missing colorscheme; yes '' feeds newlines to dismiss prompts
 if command -v vim &> /dev/null; then
-    vim -E -s +PluginInstall +qall 2>/dev/null || true
+    yes '' | vim +PluginInstall +qall 2>/dev/null || true
 fi
