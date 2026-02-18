@@ -24,8 +24,9 @@ if ! grep -q "dotBash/bashrc" "$HOME/.bashrc" 2>/dev/null; then
 fi
 
 # Install tmux plugins non-interactively via TPM
-if [ -x "$DOTFILES_DIR/dotTmux/plugins/tpm/bin/install_plugins" ]; then
-    "$DOTFILES_DIR/dotTmux/plugins/tpm/bin/install_plugins" || true
+# Use $HOME/.tmux path (symlinked above) since TPM submodule is resolved there
+if [ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then
+    "$HOME/.tmux/plugins/tpm/bin/install_plugins" || true
 fi
 
 # Install Vim plugins non-interactively
