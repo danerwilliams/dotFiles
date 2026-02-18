@@ -23,6 +23,11 @@ if ! grep -q "dotBash/bashrc" "$HOME/.bashrc" 2>/dev/null; then
     echo '[ -r ~/dotfiles/dotBash/bashrc ] && source ~/dotfiles/dotBash/bashrc' >> "$HOME/.bashrc"
 fi
 
+# Install tmux plugins non-interactively via TPM
+if [ -x "$DOTFILES_DIR/dotTmux/plugins/tpm/bin/install_plugins" ]; then
+    "$DOTFILES_DIR/dotTmux/plugins/tpm/bin/install_plugins" || true
+fi
+
 # Install Vim plugins non-interactively
 # First run hits "Press ENTER" from missing colorscheme; yes '' feeds newlines to dismiss prompts
 if command -v vim &> /dev/null; then
