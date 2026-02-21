@@ -36,13 +36,10 @@ if command -v vim &> /dev/null; then
 fi
 
 # Claude Code - enable vim mode
-mkdir -p "$HOME/.claude"
-CLAUDE_SETTINGS="$HOME/.claude/settings.json"
-if [ -f "$CLAUDE_SETTINGS" ]; then
-    # Update existing settings with vim mode
+CLAUDE_CONFIG="$HOME/.claude.json"
+if [ -f "$CLAUDE_CONFIG" ]; then
     tmp=$(mktemp)
-    jq '. + {"editorBindings": "vim"}' "$CLAUDE_SETTINGS" > "$tmp" && mv "$tmp" "$CLAUDE_SETTINGS"
+    jq '. + {"editorMode": "vim"}' "$CLAUDE_CONFIG" > "$tmp" && mv "$tmp" "$CLAUDE_CONFIG"
 else
-    # Create new settings file with vim mode
-    echo '{"editorBindings": "vim"}' > "$CLAUDE_SETTINGS"
+    echo '{"editorMode": "vim"}' > "$CLAUDE_CONFIG"
 fi
